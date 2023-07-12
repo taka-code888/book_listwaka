@@ -1,0 +1,6 @@
+<meta charset="UTF-8" />
+<div id="header" th:fragment="layout-header">
+	<h3>書籍一覧システム</h3>
+	<div th:text="${session.userName}"></div>
+	<a href="/book_list/logout">ログアウト</a>
+</div>

@@ -1,0 +1,20 @@
+p.error {
+  color: red;
+}
+div#header {
+  height: 100px;
+  background-color: #4682B4;
+  color: #FFFFFF;
+}
+
+div#footer {
+  text-align: center;
+  height: 50px;
+  background-color: #4682B4;
+  color: #FFFFFF;
+}
+
+div#main {
+  text-align: center;
+  height: 300px;
+}

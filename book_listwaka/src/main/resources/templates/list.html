@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+<head>
+<title>書籍一覧画面</title>
+</head>
+<body>
+  <p>書籍一覧画面</p>
+  <div id="main">
+
+		<div class="form">
+
+		<form th:action="@{/list/like}" method="post">
+
+		書籍名:<input type="text" name="name" />
+		<input type="submit" value="検索" />
+
+		</form>
+
+		</div>
+
+		<div class="form">
+
+		<form th:action="@{/list/genre}" method="post">
+		ジャンル名:
+		<!-- select　ドロップダウン -->
+		<select name="genreId">
+<!--/* 	<option th:each="item: ${session.items}"
+		<option th:each="book: ${books}"
+				th:value="${book.genre.genreId}" th:text="${book.genre.genreName}" th:selected="${book.genre.genreId == 1}">
+
+
+				</option> */-->
+            <option value="1">文学</option>
+            <option value="2">経済</option>
+            <option value="3">技術</option>
+		</select>
+
+		<input type="submit" value="検索" />
+		</form>
+
+		</div>
+
+  		 <div th:if="${#lists.isEmpty(books)}">
+         		 <p class="message">該当する書籍は存在しません。</p>
+         		 <p class="listLink">
+	         	 <a href="/book_list/list">一覧表示に戻る</a>
+         	 </p>
+  		  </div>
+
+
+
+
+	<div th:unless="${#lists.isEmpty(books)}">
+		<table border="1">
+			<tr>
+				<th>書籍ID</th>
+				<th>書籍名</th>
+				<th>著者</th>
+				<th>発行日</th>
+				<th>在庫</th>
+				<th>ジャンル名</th>
+			</tr>
+			<tr th:each="book: ${books}">
+				<td th:text="${book.bookId}"></td>
+				<td th:text="${book.bookName}"></td>
+				<td th:text="${book.author}"></td>
+				<td class="book" th:text="${#dates.format(book.publicationDate, 'yyyy/MM/dd')}"></td>
+<!--  			<td th:text="${book.publicationDate}"></td>  -->
+				<td th:text="${book.stock}"></td>
+				<td th:text="${book.genre.genreName}"></td>
+			</tr>
+		</table>
+
+
+  </div>
+</body>
+</html>
